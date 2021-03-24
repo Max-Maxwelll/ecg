@@ -1,0 +1,126 @@
+.patient{
+    width: 1000px;
+    margin: 100px auto 50px auto;;
+
+}
+.patient-data{
+    margin-bottom: 20px;
+    border: 2px solid crimson;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.patient-data-title, .patient-add-title{
+    width: 100%;
+    display: block;
+    background: crimson;
+    color: white;
+    padding: 20px 15px;
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    text-transform: uppercase;
+}
+.patient-data-data{
+    float: left;
+    padding: 5px;
+    font-size: 1.2em;
+    line-height: 2;
+    border-bottom: 3px solid #e1e1e1;
+    margin: 10px;
+    box-sizing: border-box;
+}
+.patient-data-data b{
+    color: crimson;
+}
+.patient-data label {
+    display: table;
+    clear: left;
+    margin: 10px;
+}
+.patient-data p {
+    clear: left;
+    margin: 0 10px 10px 10px;
+    line-height: 2;
+    border: 2px solid #e1e1e1;
+    padding: 5px 10px;
+    font-size: 1.1em;
+    text-align: justify;
+}
+.patient-add{
+    border: 2px solid crimson;
+    box-sizing: border-box;
+    overflow: auto;
+}
+.block-input{
+    width: 48%;
+    float: left;
+    margin: 1.5% 1%;
+}
+.patient-add input{
+    display: table;
+    width: 100%;
+    padding: 10px;
+    font-size: 1.2em;
+    overflow: auto;
+}
+.auth-exception{
+    position: absolute;
+    margin-top: 5px;
+}
+.patient-add textarea{
+    width: 98%;
+    margin: 1%;
+    font-size: 1.1em;
+    text-align: justify;
+    padding: 5px 10px;
+    line-height: 2;
+}
+.patient-add-loadFile{
+    float: left;
+    margin: 1% !important;
+}
+.patient-add-dataFile{
+    display: table;
+    float: left;
+    margin: 1%;
+    padding: 10px 0;
+    color: crimson;
+    font-size: 1.2em;
+}
+.btn-submit{ 
+    margin: 10px auto;
+}
+.patient-add-submit{
+    float: right;
+    margin: 1%;
+}
+.patient-table{
+    width: 100%;
+    margin-top: 20px;
+    border-collapse: collapse;
+    line-height: 2;
+    font-size: 1.2em;
+}
+.patient-table-header th{
+    background: crimson;
+    color: white;
+    font-weight: normal;
+    padding: 10px 0;
+}
+.patient-table td{
+    text-align: center;
+    border: 1px solid #e1e1e1;
+}
+.patient-table td span{
+    border-bottom: 2px solid crimson;
+}
+.patient-table td button{
+    font-size: 1.2em;
+    transition: 0.3s;
+    cursor: pointer;
+    color: crimson;
+}
+.patient-table td button:hover{
+    font-size: 1em;
+    border-bottom: 2px solid crimson;
+    transition: 0.3s;
+}

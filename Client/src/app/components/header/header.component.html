@@ -1,0 +1,15 @@
+<nav class="main-nav">
+  <a  class="link-menu" routerLink="/home" routerLinkActive="active" *ngIf="isLoggedIn == true">Домашня</a>
+  <a class="link-menu" routerLink="/patients" routerLinkActive="active" *ngIf="isLoggedIn == true">Пацієнти</a>
+  <!-- *ngIf="isLoggedIn == true" -->
+  <a  class="link-menu" routerLink="/login" routerLinkActive="active" *ngIf="isLoggedIn == false">Авторизація</a>
+  <a class="link-menu" routerLink="../register" routerLinkActive="active" *ngIf="isLoggedIn == false">Реєстрація</a>
+</nav>
+<a class="link-menu-user" *ngIf="isLoggedIn == true" (click)="submenu()">{{LastName || "FirstName"}} {{FirstName || "LastName"}}</a>
+<div class="submenu" *ngIf="statusSubmenu" [ngStyle]="remove">
+  <button class="submenu-btn-close" (click)="submenu()"> x </button>
+  <nav>
+    <a routerLink="../reset" routerLinkActive="active">Змінити пароль</a>
+    <a (click)="userService.logout()">Вийти</a>
+  </nav>
+</div>

@@ -1,0 +1,20 @@
+<app-header></app-header>
+<div class="flex-box">
+  <form class="form-authorization" #LoginForm="ngForm" (ngSubmit)="OnSubmit(LoginForm)">
+    <h2>Авторизація</h2>
+      <input class="validate" type="text" name="Email" #Email="ngModel" [(ngModel)]="model.Email" placeholder="E-mail" [pattern]="emailPattern">
+      <div [hidden]="Email.valid || Email.untouched" class="auth-exception">
+        Некоректний E-mail
+      </div>
+      <input class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="model.Password" placeholder="Пароль" required  minlength="3">
+      <div [hidden]="Password.valid || Password.untouched" class="auth-exception">
+        Не менше 5 символів
+      </div>
+        <input style="float: left; width: 15px;" type="checkbox" name="RememberMe" #RememberMe="ngModel" [(ngModel)]="model.RememberMe" placeholder="RememberMe">
+        <label style="padding: 6px 0; display: table;">Запам'ятати мене</label>
+
+      <button [disabled]="!LoginForm.valid" value="RememberMe" class="btn-submit" type="submit">Відправити</button>
+
+      <a routerLink="../forgot">Забув пароль?</a>
+  </form>
+</div>

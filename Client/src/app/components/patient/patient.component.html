@@ -1,0 +1,101 @@
+<app-header></app-header>
+<div class="patient" *ngIf="this.userService.loggedIn">
+  <div class="patient-data">
+    <span class="patient-data-title">№{{model.Id || "0"}} : {{model.FirstName || "Им'я"}} {{model.LastName || "Прізвище"}} {{model.MiddleName || "Им'я по батькові"}}</span>
+    <span class="patient-data-data">Вік <b>{{model.Age || "0"}}</b> років</span>
+    <span class="patient-data-data">Вага <b>{{model.Weight || "0"}}</b> кг.</span>
+    <span class="patient-data-data">Зріст <b>{{model.Height || "0"}}</b> см.</span>
+    <span class="patient-data-data"> Стать <b>{{model.Sex || "___"}}</b></span>
+    <span  class="patient-data-data" style="clear: left;">Мобільний телефон <b>{{model.PhoneNumber || "0000000000"}}</b></span>
+    <span class="patient-data-data">Домашній телефон <b>{{model.HomeNumber || "0000000"}}</b></span>
+    <span class="patient-data-data">E-mail <b>{{model.Email || "___"}}</b></span>
+    <span class="patient-data-data" style="clear: left;">Стан пацієнта</span>
+    <p>{{model.Condition || "___"}}</p>
+  </div>
+  <form class="patient-add" #PatientForm="ngForm">
+    <span class="patient-add-title">Додати пацієнта</span>
+    <div class="block-input">
+      <input type="text" name="FirstName" #FirstName="ngModel" [(ngModel)]="model.FirstName" placeholder="Ім'я" minlength="3">
+      <div [hidden]="FirstName.valid || FirstName.untouched" class="auth-exception" style="clear: left;">
+        Не меньше 3 літер
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="LastName" #LastName="ngModel" [(ngModel)]="model.LastName" placeholder="Прізвище" minlength="3">
+      <div [hidden]="LastName.valid || LastName.untouched" class="auth-exception" style="clear: left;">
+        Не меньше 3 літер
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="MiddleName" #MiddleName="ngModel" [(ngModel)]="model.MiddleName" placeholder="Ім'я по батькові" minlength="3">
+      <div [hidden]="MiddleName.valid || MiddleName.untouched" class="auth-exception" style="clear: left;">
+        Не меньше 3 літер
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="Age" #Age="ngModel" [(ngModel)]="model.Age" placeholder="Вік" [pattern]="agePattern">
+      <div [hidden]="Age.valid || Age.untouched" class="auth-exception" style="clear: left;">
+        Не меньше 0
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="Weight" #Weight="ngModel" [(ngModel)]="model.Weight" placeholder="Вага" minlength="2">
+      <div [hidden]="Weight.valid || Weight.untouched" class="auth-exception" style="clear: left;">
+        Двозначне число і більше
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="Height" #Height="ngModel" [(ngModel)]="model.Height" placeholder="Зріст" minlength="2">
+      <div [hidden]="Height.valid || Height.untouched" class="auth-exception" style="clear: left;">
+        Двозначне число і більше
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="Sex" #Sex="ngModel" [(ngModel)]="model.Sex" placeholder="Стать">
+      <div [hidden]="Sex != 'Чоловіча' || Sex != 'Жіноча'" class="auth-exception" style="clear: left;">
+        Стать "Жіноча" або "Чоловіча"
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="PhoneNumber" #PhoneNumber="ngModel" [(ngModel)]="model.PhoneNumber" placeholder="Мобільний телефон" minlength="10">
+      <div [hidden]="PhoneNumber.valid || PhoneNumber.untouched" class="auth-exception" style="clear: left;">
+        Довжина 10 цифр
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="HomeNumber" #HomeNumber="ngModel" [(ngModel)]="model.HomeNumber" placeholder="Домашній телефон" minlength="7">
+      <div [hidden]="HomeNumber.valid || HomeNumber.untouched" class="auth-exception" style="clear: left;">
+        Не меньше 3 літер
+      </div>
+    </div>
+    <div class="block-input">
+      <input type="text" name="Email" #Email="ngModel" [(ngModel)]="model.Email" placeholder="E-mail" [pattern]="emailPattern">
+      <div [hidden]="Email.valid || Email.untouched" class="auth-exception" style="clear: left;">
+        Некоректний E-mail
+      </div>
+    </div>
+    <textarea name="Condition" #Condition="ngModel" [(ngModel)]="model.Condition" rows="5" placeholder="Стан пацієнта"></textarea>
+    <label class="btn-submit patient-add-loadFile">
+      <input (change)="Open($event.target.files)" type="file" style="display: none;">
+      Завантажити кардіограму
+    </label>
+    <span class="patient-add-dataFile">{{this.model.Url}}</span>
+    <br>
+    <button [disabled]="!PatientForm.valid" class="btn-submit patient-add-submit" type="submit" (click)="OnSubmit(PatientForm, file)">Створити</button>
+    <button [disabled]="!PatientForm.valid" class="btn-submit patient-add-submit" (click)="Change()">Оновити</button>
+  </form>
+  <table class="patient-table">
+    <tr class="patient-table-header">
+      <th>№</th><th>Им'я</th><th>Прізвище</th><th>Ім'я по батькові</th><th>Вік</th><th></th><th></th>
+    </tr>
+    <tr *ngFor="let patient of patients">
+      <td><span>{{patient.id}}</span></td>
+      <td>{{patient.firstName}}</td>
+      <td>{{patient.lastName}}</td>
+      <td>{{patient.middleName}}</td>
+      <td>{{patient.age}}</td>
+      <td><button (click)="GetPatient(patient)">Отримати</button></td>
+      <td><button (click)="DeletePatient(patient)">Видалити</button></td>
+    </tr>
+  </table>
+</div>

@@ -1,0 +1,3 @@
+
+<router-outlet></router-outlet>
+<modal-dialog *ngIf='this.userService.isModalDialogVisible' [(description)]="this.userService.modal_message" (isConfirmed)="this.userService.closeModal($event)"></modal-dialog>

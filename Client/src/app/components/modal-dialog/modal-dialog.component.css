@@ -1,0 +1,28 @@
+.modal-body{
+    width: 300px;
+    display: table;
+    position: fixed;
+    top: 0; bottom: 0;
+    left: 0; right: 0;
+    margin: auto;
+    background: white;
+    border: 2px solid crimson;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 999;
+    animation: fade 0.3s linear 0s 1 normal;
+    transition: 0.3s all;
+}
+.modal-body h2{
+    background: crimson;
+    padding: 20px 0;
+    text-align: center;
+    color: white;
+}
+.modal-body h3{
+    text-align: center;
+    padding: 15px;
+}
+.modal-body-load{
+    display: table;
+    margin: 30px auto;
+}

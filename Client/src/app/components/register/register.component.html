@@ -1,0 +1,29 @@
+<app-header></app-header>
+<div class="flex-box">
+  <form class="form-authorization" #RegistrationForm="ngForm" (ngSubmit)="OnSubmit(RegistrationForm)">
+    <h2>Реєстрація</h2>
+      <input class="validate" type="text" name="FirstName" #FirstName="ngModel" [(ngModel)]="model.FirstName" placeholder="Ім'я">
+
+      <input class="validate" type="text" name="LastName" #LastName="ngModel" [(ngModel)]="model.LastName" placeholder="Прізвище">
+
+      <input class="validate" type="text" name="Email" #Email="ngModel" [(ngModel)]="model.Email" placeholder="E-mail" [pattern]="emailPattern">
+      <div [hidden]="Email.valid || Email.untouched" class="auth-exception">
+        Некоректний E-mail
+      </div>
+      
+      <input class="validate" type="password" name="Password" #Password="ngModel" [(ngModel)]="model.Password" placeholder="Пароль" required  minlength="5">
+      <div [hidden]="Password.valid || Password.untouched" class="auth-exception">
+        Не менше 5 символов
+      </div>
+      
+      <input class="validate" type="password" name="ConfirmPassword" #ConfirmPassword="ngModel" [(ngModel)]="model.ConfirmPassword" placeholder="Повторити пароль" required  minlength="5">
+      <div *ngIf="model.Password != ''" [hidden]="model.Password == model.ConfirmPassword" class="auth-exception">
+        Пароль не збігається
+      </div>
+      <div [hidden]="ConfirmPassword.valid || ConfirmPassword.untouched" class="auth-exception">
+        Не менше 5 символів
+      </div>
+
+      <button [disabled]="!RegistrationForm.valid" class="btn-submit" type="submit">Відправити</button>
+  </form>
+</div>

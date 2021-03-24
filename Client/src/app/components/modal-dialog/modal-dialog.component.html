@@ -1,0 +1,8 @@
+<div class="modal-back">
+  <div [ngStyle]="remove" [ngClass]="modalBody()"> 
+    <h2>ПОВІДОМЛЕННЯ</h2>
+    <h3 *ngIf='description != "100%" && description != null && description != "" && description != unexpected'>{{description}}</h3>
+    <img class="modal-body-load" *ngIf='description == null || description == "" || description == unexpected || description == "100%"'src="../../../assets/images/loader.gif" alt="">
+    <button class="btn-submit" (click)="close()">ЗАКРИТИ</button>
+  </div>
+</div>

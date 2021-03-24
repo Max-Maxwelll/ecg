@@ -1,0 +1,72 @@
+<app-header></app-header>
+<div class="home-content" *ngIf="this.userService.loggedIn">
+  <div class="home-content-logo">
+    <h3 >ЕКГ ЗЧИТУВАЧ </h3>
+    <button (click)="return_scale()" title="Повернути масштаб"><img class="img-reset-scale" src="../../../assets/images/reset_scale.png" alt=""></button>
+    <button (click)="jump(130)" title="Пройти 1 секунду"><h3>+1с</h3></button>
+    <button (click)="jump(7680)" title="Пройти 1 минуту"><h3>+1м</h3></button>
+    <button (click)="jump(76800)" title="Пройти 10 минуту"><h3>+10м</h3></button>
+    <button (click)="jump(230400)" title="Пройти 30 минуту"><h3>+30м</h3></button>
+    <button (click)="jump(-start_point)" title="До початку"><img class="img-reset-scale" src="../../../assets/images/to_the_start.png" alt=""></button>
+  </div>
+  <div class="block-cardiogram" id="workBlock">
+    <svg class="block-cardiogram-content" id="svg" xmlns="http://www.w3.org/2000/svg" version="1.1"
+    (click)="svg_click($event)" (mousewheel)="svg_wheel($event)" 
+    (mouseover)="svg_over()" (mouseleave)="svg_leave()" [ngStyle]="svgTransform">
+      <!-- X  and Y -->
+      <polyline id="polyline" [attr.points]="polyline_points" stroke="red" stroke-width="0.6" fill="none">
+      </polyline>  
+      
+      <path d="M 0 125 h 1000" stroke="green" stroke-width="1" stroke-dasharray="1 5" />
+      <path d="M 0 100 h 1000" stroke="green" stroke-width="1" stroke-dasharray="1 5" />
+      <path d="M 0 50 h 1000" stroke="green" stroke-width="1" stroke-dasharray="1 5" />
+      <path d="M 0 0 h 1000" stroke="gray" stroke-width="1" stroke-dasharray="8" />
+      <path d="M 0 -50 h 1000" stroke="green" stroke-width="1" stroke-dasharray="1 5" />
+      <path d="M 0 -100 h 1000" stroke="green" stroke-width="1" stroke-dasharray="1 5" />
+      <path d="M 0 -125 h 1000" stroke="green" stroke-width="1" stroke-dasharray="1 5" />
+    </svg>
+    <b class="text-axis-y" style="margin-top: -290px;">125</b>
+    <b class="text-axis-y" style="margin-top: -265px;">100</b>
+    <b class="text-axis-y" style="margin-top: -215px;">50</b>
+    
+    <b class="text-axis-y" style="margin-top: -115px;">-50</b>
+    <b class="text-axis-y" style="margin-top: -65px;">-100</b>
+    <b class="text-axis-y" style="margin-top: -40px;">-125</b>
+    
+  </div>
+  <div class="board-data">
+    <span>{{counter_time}}</span>
+    <span>{{counter_points}}</span>
+    <label class="btn-load-file">
+      <input (change)="convert($event.target.files)" type="file" name="file" style="display: none;">
+      <h4>Відкрити</h4>
+    </label>
+    <label class="btn-load-file">
+      <input (change)="ChangeData($event.target.files)" type="file" name="changeFile" style="display: none;">
+      <h4>Обробыти</h4>
+    </label>
+  </div>
+  <div class="home-content-info">
+    <!-- <h3 style="color: green;" *ngIf="this.userService.data != ''">Файл загружен!</h3> -->
+    <!-- <h3 style="color: green;" *ngIf="this.message != ''">{{this.message}}</h3> -->
+    <!-- <span style="font-weight:bold;color:green;" *ngIf="this.userService.message">
+        {{this.userService.message}}
+    </span> -->
+    <!-- <h4>{{file.name}}, {{(file.size/1024)/1024}}</h4> -->
+    <!-- <input type="text" [(ngModel)]="points" style="width: 100%;"/> -->
+    <!-- <button (click)="showDialog()">click</button> -->
+  </div>
+  <table class="patient-table">
+      <tr class="patient-table-header">
+        <th>№</th><th>Им'я</th><th>Прізвище</th><th>Ім'я по батькові</th><th>Вік</th><th></th>
+      </tr>
+      <tr *ngFor="let patient of patients">
+        <td><span>{{patient.id}}</span></td>
+        <td>{{patient.firstName}}</td>
+        <td>{{patient.lastName}}</td>
+        <td>{{patient.middleName}}</td>
+        <td>{{patient.age}}</td>
+        <td><button (click)="GetData(patient.id)">Отримати</button></td>
+      </tr>
+    </table>
+</div>

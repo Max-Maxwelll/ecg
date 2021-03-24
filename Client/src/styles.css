@@ -1,0 +1,113 @@
+*::selection{
+    background: red;
+    color: white;
+}
+*::-moz-selection{
+    background: red;
+    color: white;
+}
+* {
+    font-family: Arial;
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+body{
+    position: absolute;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+}
+
+.auth-exception {
+    padding-left: 10px;
+    color: crimson;
+}
+.main-loader {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-left: -50px;
+    width: 160px;
+    height: 24px;
+}
+/* .active {color:red;} */
+button {
+    outline: 0;
+    border: 0;
+    background: none;
+}
+input:focus, button:focus{ outline: 0; }
+
+.flex-box {
+    position: absolute;
+    top: 50px; left: 0;
+    right: 0; bottom: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form-authorization{
+    display: table;
+    border: 1px solid crimson;
+    animation: fade 0.3s linear 0s 1 normal;
+}
+.form-authorization h2 {
+    width: 100%;
+    padding: 20px 40px;
+    display: table;
+    background: crimson;
+    color: white;
+    text-align: center;
+}
+.form-authorization input{
+    display: table;
+    width: 94%;
+    padding: 10px;
+    margin: 3%;
+    font-size: 1.2em;
+}
+.form-authorization a{
+    display: block;
+    text-align: center;
+    padding: 10px;
+    background: crimson;
+    color: white;
+}
+.btn-submit{
+    background: crimson;
+    /* Убрал обводку */
+    border: 0;
+    margin: 3% auto;
+    display: table;
+    padding: 10px 20px;
+    color: white;
+    font-size: 1.2em;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.btn-submit:hover {
+    transition: 0.3s all;
+    background: white;
+    outline: 2px solid crimson;
+    color: crimson;
+    box-sizing: border-box;
+}
+.btn-submit:disabled{
+    background: rgb(187, 187, 187);
+}
+.btn-submit:disabled:hover{
+    outline: none;
+    color: white;
+}
+/*анимация появления*/
+@keyframes fade {
+	/*прозрачность*/
+    0% { opacity: 0; } 
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+@keyframes remove{
+    0% {opacity: 1;}
+    100% {opacity: 0;}
+}

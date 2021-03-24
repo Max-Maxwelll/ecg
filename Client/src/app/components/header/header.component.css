@@ -1,0 +1,98 @@
+.main-nav {
+
+    height: 50px;
+    width: 100%;
+    background: crimson;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.link-menu{
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    display: table;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.link-menu:hover{
+    transition: 0.3s all;
+    transform: scale(1.2);
+}
+
+.link-menu-user {
+    background: crimson;
+    position: absolute;
+    right: 10px;
+    top: 0px;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    color: white;
+    cursor: pointer;
+    transition: 0.3s all;
+}
+.link-menu-user:hover {
+    transition: 0.3s all;
+    background: white;
+    color: crimson;
+}
+.submenu{
+    position: fixed;
+    background: white;
+    border: 4px solid crimson;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0; left: 0;
+    right: 0; bottom: 0;
+    z-index: 999;
+    animation: fade 0.3s linear 0s 1 normal;
+}
+.submenu nav{
+    display: table;
+    min-width: 300px;
+}
+.submenu a{
+    color: crimson;
+    display: table;
+    margin: 0 auto;
+    font-size: 1.5em;
+    padding: 15px;
+    cursor: pointer;
+    text-decoration: none;
+    transition: 0.3s all;
+}
+.submenu a:hover{
+    transition: 0.3s all;
+    transform: scale(1.2);
+}
+.submenu-btn-close{
+    position: absolute;
+    right: 0; top: 0;
+    line-height: 0.5;
+    padding: 10px;
+    background: none;
+    font-size: 3em;
+    border: 0;
+    cursor: pointer;
+    color: crimson;
+    transition: 0.3s all;
+}
+.submenu-btn-close:hover{
+    transition: 0.3s all;
+    transform: scale(1.2);
+}
+/*анимация появления*/
+@keyframes fade {
+	/*прозрачность*/
+    0% { opacity: 0; } 
+    50% { opacity: 0.5; }
+    100% { opacity: 1; }
+}
+/*анимация затухания*/
+@keyframes fadeOff{
+	/*прозрачность*/
+	0% { opacity: 1; } 
+	50% { opacity: 0.5; }
+	100% { opacity: 0; }
+}
